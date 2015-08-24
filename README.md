@@ -19,29 +19,29 @@ Create a rake task to send the email:
 
 ```
 desc "Abandoned cart emails"
-task send_abandond_cart_emails: :environment do
+task send_abandond_cart: :environment do
   Spree::Order.self.email_eligible_abandoned_email_orders
 end
 ```
 Create a cronjob to run every so often to send the emails:
 
 ```
-0 * * * * /bin/bash -l -c 'cd {your_application_home} && RAILS_ENV=production rake send_abandoned_cart_emails 2>&1'
+0 * * * * /bin/bash -l -c 'cd {your_application_home} && RAILS_ENV=production rake send_abandoned_cart 2>&1'
 ```
 
 ##Installation
 
-Add spree_abandoned_cart_email to your Gemfile:
+Add spree_abandoned_cart to your Gemfile:
 
 ```ruby
-gem 'spree_abandoned_cart_email'
+gem 'spree_abandoned_cart'
 ```
 
 Bundle your dependencies and run the installation generator:
 
 ```shell
 bundle
-bundle exec rails g spree_abandoned_cart_email:install
+bundle exec rails g spree_abandoned_cart:install
 ```
 
 ##Testing
@@ -58,5 +58,5 @@ When testing your applications integration with this extension you may use it's 
 Simply add this require statement to your spec_helper:
 
 ```ruby
-require 'spree_abandoned_cart_email/factories'
+require 'spree_abandoned_cart/factories'
 ```

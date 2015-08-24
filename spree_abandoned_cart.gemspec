@@ -1,22 +1,20 @@
 # encoding: UTF-8
 Gem::Specification.new do |s|
   s.platform    = Gem::Platform::RUBY
-  s.name        = 'spree_abandoned_cart_email'
-  s.version     = '0.0.3'
+  s.name        = 'spree_abandoned_cart'
+  s.version     = '0.0.1'
   s.summary     = 'Abandoned cart email'
   s.description = 'Abandoned cart email'
   s.required_ruby_version = '>= 1.9.3'
 
-  s.author    = 'Richard Hart'
-  s.email     = 'richard@ur-ban.com'
-  # s.homepage  = 'http://www.spreecommerce.com'
+  s.author    = 'Jet Ruby Agency'
+  s.email     = 'info@jetruby.com'
+  s.homepage  = 'http://jetruby.com/'
 
-  #s.files       = `git ls-files`.split("\n")
-  #s.test_files  = `git ls-files -- {test,spec,features}/*`.split("\n")
   s.require_path = 'lib'
   s.requirements << 'none'
 
-  s.add_dependency 'spree_core', '~> 2.2.0.beta'
+  s.add_dependency 'spree_core', '~> 2.4.3'
 
   s.add_development_dependency 'capybara', '~> 2.1'
   s.add_development_dependency 'coffee-rails'

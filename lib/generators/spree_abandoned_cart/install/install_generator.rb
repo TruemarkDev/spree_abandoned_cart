@@ -1,11 +1,11 @@
-module SpreeAbandonedCartEmail
+module SpreeAbandonedCart
   module Generators
     class InstallGenerator < Rails::Generators::Base
 
-      class_option :auto_run_migrations, :type => :boolean, :default => false
+      class_option :auto_run_migrations, type: :boolean, default: false
 
       def add_migrations
-        run 'bundle exec rake railties:install:migrations FROM=spree_abandoned_cart_email'
+        run 'bundle exec rake railties:install:migrations FROM=spree_abandoned_cart'
       end
 
       def run_migrations

@@ -28,8 +28,8 @@ require 'spree/testing_support/controller_requests'
 require 'spree/testing_support/authorization_helpers'
 require 'spree/testing_support/url_helpers'
 
-# Requires factories defined in lib/spree_abandoned_cart_email/factories.rb
-require 'spree_abandoned_cart_email/factories'
+# Requires factories defined in lib/spree_abandoned_cart/factories.rb
+require 'spree_abandoned_cart/factories'
 
 RSpec.configure do |config|
   config.include FactoryGirl::Syntax::Methods
