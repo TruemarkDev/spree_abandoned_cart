@@ -6,6 +6,10 @@ Use the config values below to change settings:
 
 ```
 Spree::AbandonedCartEmail::Config.email_timeframe = 12.hours
+
+Spree::AbandonedCartEmail::Config.email_timeframe_from, :integer, default: 6.hours
+Spree::AbandonedCartEmail::Config.email_timeframe_to,   :integer, default: 24.hours
+
 Spree::AbandonedCartEmail::Config.email_from = "spree@example.com"
 ```
 

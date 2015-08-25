@@ -1,4 +1,5 @@
 Spree::Order.class_eval do
+  has_one :abandoned_order, class_name: 'Spree::AbandonedOrder', foreign_key: :spree_order_id
 
   ABANDONED_EMAIL_TIMEFRAME = 6.hours
 
@@ -9,14 +10,15 @@ Spree::Order.class_eval do
   end
 
   def self.eligible_abandoned_email_orders
-    where("state != ?
+    where('state != ?
             AND (payment_state IS NULL OR payment_state != ?)
             AND email is NOT NULL
             AND abandoned_email_sent_at IS NULL
-            AND created_at < ?",
-          "complete",
-          "paid",
-          (Time.zone.now - Spree::AbandonedCartEmailConfig::Config.email_timeframe)).joins(:line_items).distinct
+            AND (spree_orders.created_at BETWEEN ? AND ? )',
+          'complete',
+          'paid',
+          (Time.zone.now - Spree::AbandonedCartEmailConfig::Config.email_timeframe_from),
+          (Time.zone.now - Spree::AbandonedCartEmailConfig::Config.email_timeframe_to)).joins(:line_items).distinct
   end
 
   def send_abandoned_email
@@ -25,6 +27,7 @@ Spree::Order.class_eval do
 
     Spree::AbandonedCartMailer.abandoned_email(self).deliver
     mark_abandoned_email_as_sent
+    log_abaunded_cart
   end
 
   private
@@ -33,4 +36,7 @@ Spree::Order.class_eval do
     update_attribute :abandoned_email_sent_at, Time.zone.now
   end
 
+  def log_abaunded_cart
+    Spree::AbandonedOrder.create spree_order_id: id
+  end
 end
