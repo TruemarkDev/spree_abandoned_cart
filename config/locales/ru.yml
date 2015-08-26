@@ -1,5 +1,6 @@
 ru:
   spree:
+    abandoned_index: Брошенные корзины
     abandoned_cart:
       email:
-        subject: "В вашей корзине остались товары!"
+        subject:     В вашей корзине остались товары!

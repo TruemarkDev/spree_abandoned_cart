@@ -1,5 +1,6 @@
 en:
   spree:
+    abandoned_index: Abandoned carts
     abandoned_cart:
       email: 
-        subject: "There are still items in your shopping cart!"
+        subject:     There are still items in your shopping cart!
