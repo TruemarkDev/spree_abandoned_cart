@@ -3,4 +3,6 @@ en:
     abandoned_index: Abandoned carts
     abandoned_cart:
       email: 
-        subject:     There are still items in your shopping cart!
+        subject:        There are still items in your shopping cart!
+        subject_second: We remind you that you have forgotten your cart!
+        subject_third:  Last chance to pick up your goods!
