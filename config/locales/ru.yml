@@ -1,6 +1,17 @@
 ru:
   spree:
-    abandoned_index: Брошенные корзины
+    abandoned_index:          Брошенные корзины
+    show_only_accomplished:   Показать только выполненые
     abandoned_cart:
+      date_range_created:     Диапазон дат - создано
+      date_range_sent_emails: Диапазон дат - последняя отправка
       email:
-        subject:     В вашей корзине остались товары!
+        subject:        В вашей корзине остались товары!
+        subject_second: Напомним вам, что вы забыли товары!
+        subject_third:  Последний шанс, чтобы забрать ваши товары!
+      filters:
+        abandoned:      Брошена
+        success:        Куплена
+        attempt_one:    Отослано 1 письмо
+        attempt_two:    Отослано 2 письма
+        attempt_three:  Отослано 3 письма

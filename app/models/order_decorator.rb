@@ -1,5 +1,5 @@
 Spree::Order.class_eval do
-  has_one :abandoned_order, class_name: 'Spree::AbandonedOrder', foreign_key: :spree_order_id
+  has_one :abandoned_order, class_name: 'Spree::AbandonedOrder', foreign_key: :spree_order_id, dependent: :destroy
 
   ABANDONED_EMAIL_TIMEFRAME = 6.hours
 

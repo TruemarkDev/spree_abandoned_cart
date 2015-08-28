@@ -1,4 +1,4 @@
-%table#listing_abandoned_carts.index.sortable{'data-hook' => '', 'data-sortable-link' => update_positions_admin_abandoned_carts_path}
+%table#listing_abandoned_carts.index.sortable{'data-hook' => '', 'data-sortable-link' => update_positions_admin_abandoned_orders_path}
   %thead
     %tr{'data-hook' => 'abandoned_carts_header'}
       %th.no-border
@@ -14,12 +14,12 @@
       %tr{class: cycle('odd', 'even'), 'data-hook' => 'abandoned_cart_row', id: abandoned_cart.id}
         %td.no-border
           %span.handle
-        %td.align-center= link_to abandoned_cart.order.number, admin_abandoned_cart_path(abandoned_cart)
+        %td.align-center= link_to abandoned_cart.order.number, admin_abandoned_order_path(abandoned_cart)
         %td.align-center= abandoned_cart.send_emails_count
         %td.align-center= abandoned_cart.updated_at
         %td.align-center= abandoned_cart.order_accomplished
         %td.align-center= abandoned_cart.accomplished_at
         %td.align-center Base
         %td.actions
-          = link_to_with_icon 'trash', Spree.t(:delete), admin_abandoned_cart_path(abandoned_cart), { method: :delete, data: { confirm:'Are you sure?' }, no_text: true, remote: true}
+          = link_to_with_icon 'trash', Spree.t(:delete), admin_abandoned_order_path(abandoned_cart), { method: :delete, data: { confirm:'Are you sure?' }, no_text: true, remote: true}
 = paginate abandoned_carts

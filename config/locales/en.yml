@@ -1,8 +1,17 @@
 en:
   spree:
-    abandoned_index: Abandoned carts
+    abandoned_index:          Abandoned carts
+    show_only_accomplished:   Show only accomplished
     abandoned_cart:
+      date_range_created:     Date range - created
+      date_range_sent_emails: Date range - emails sending
       email: 
         subject:        There are still items in your shopping cart!
         subject_second: We remind you that you have forgotten your cart!
         subject_third:  Last chance to pick up your goods!
+      filters:
+        abandoned:      Abandoned
+        success:        Success
+        attempt_one:    Sent 1 email
+        attempt_two:    Sent 2 emails
+        attempt_three:  Sent 3 emails
