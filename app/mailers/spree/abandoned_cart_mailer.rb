@@ -9,12 +9,12 @@ module Spree
 
     def abandoned_second_email(order)
       @order = order
-      mail to: @order.email, subject: Spree.t('abandoned_cart.email.subject_second'),
+      mail to: @order.email, subject: Spree.t('abandoned_cart.email.subject_second')
     end
 
     def abandoned_third_email(order)
       @order = order
-      mail to: @order.email, subject: Spree.t('abandoned_cart.email.subject_third'),
+      mail to: @order.email, subject: Spree.t('abandoned_cart.email.subject_third')
     end
   end
 end

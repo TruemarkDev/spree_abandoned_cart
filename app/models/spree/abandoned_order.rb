@@ -13,8 +13,8 @@ class Spree::AbandonedOrder < ActiveRecord::Base
     eligible_orders_next_attempt(COUNTER_THIRD_ATTEMPT).each { |abandoned_order| abandoned_order.send_third_abandoned_email }
   end
 
-  def self.eligible_orders_next_attempt(emails_count = 1, hours_period = [25, 24])
-  # def self.eligible_orders_next_attempt(emails_count = 1, hours_period = [10, 0])
+  def self.eligible_orders_next_attempt(emails_count = 1, hours_period = [3, 1])
+  # def self.eligible_orders_next_attempt(emails_count = 1, hours_period = [25, 23])
     where(send_emails_count: emails_count,
           order_accomplished: false,
           updated_at: (Time.zone.now - hours_period[0].hours)..(Time.zone.now - hours_period[1].hours))
