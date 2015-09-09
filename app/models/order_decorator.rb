@@ -1,10 +1,6 @@
 Spree::Order.class_eval do
   has_one :abandoned_order, class_name: 'Spree::AbandonedOrder', foreign_key: :spree_order_id, dependent: :destroy
 
-  ABANDONED_EMAIL_TIMEFRAME = 6.hours
-
-  preference :abandedon_email_timeframe, 6.hours
-
   def self.email_eligible_abandoned_email_orders
     eligible_abandoned_email_orders.each {|o| o.send_abandoned_email }
   end
@@ -27,16 +23,16 @@ Spree::Order.class_eval do
 
     Spree::AbandonedCartMailer.abandoned_email(self).deliver
     mark_abandoned_email_as_sent
-    log_abaunded_cart
+    log_abandoned_cart
   end
 
   private
 
   def mark_abandoned_email_as_sent
-    update_attribute :abandoned_email_sent_at, Time.zone.now
+    update_column :abandoned_email_sent_at, Time.zone.now
   end
 
-  def log_abaunded_cart
+  def log_abandoned_cart
     Spree::AbandonedOrder.create spree_order_id: id
   end
 end
