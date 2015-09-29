@@ -1,16 +1,10 @@
 class Spree::AbandonedOrder < ActiveRecord::Base
-  COUNTER_THIRD_ATTEMPT = 2
-
   belongs_to :order, class_name: 'Spree::Order', foreign_key: :spree_order_id
 
   after_create :increment_send_emails_count
 
-  def self.email_second_eligible_abandoned_email_orders
-    eligible_orders_next_attempt.each { |abandoned_order| abandoned_order.process_second_abandoned_email }
-  end
-
-  def self.email_third_eligible_abandoned_email_orders
-    eligible_orders_next_attempt(COUNTER_THIRD_ATTEMPT).each { |abandoned_order| abandoned_order.process_third_abandoned_email }
+  def self.email_eligible_abandoned_email_orders(email_number=1)
+    eligible_orders_next_attempt(email_number).each { |abandoned_order| abandoned_order.process_abandoned_email(email_number) }
   end
 
   def self.eligible_orders_next_attempt(emails_count = 1, hours_period = [25, 23])
@@ -21,17 +15,10 @@ class Spree::AbandonedOrder < ActiveRecord::Base
           updated_at: (Time.zone.now - hours_period[0].hours)..(Time.zone.now - hours_period[1].hours))
   end
 
-  def process_second_abandoned_email
+  def process_abandoned_email(email_number=1)
     (delete && return) unless self.order.email.present?
 
-    Spree::AbandonedCartMailer.abandoned_second_email(self.order).deliver
-    increment_send_emails_count
-  end
-
-  def process_third_abandoned_email
-    (delete && return) unless self.order.email.present?
-
-    Spree::AbandonedCartMailer.abandoned_third_email(self.order).deliver
+    Spree::AbandonedCartMailer.send("abandoned_#{email_number == 1 ? 'second' : 'third'}_email", self.order).deliver
     increment_send_emails_count
   end
 
