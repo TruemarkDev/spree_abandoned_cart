@@ -2,5 +2,5 @@
   = Spree.t(:abandoned_index)
 - content_for :page_actions do
   - unless current_page?(admin_abandoned_orders_path)
-    %li
+    %div
       = button_link_to Spree.t(:abandoned_index), admin_abandoned_orders_path, icon: 'arrow-left'

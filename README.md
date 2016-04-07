@@ -22,7 +22,7 @@ Create a rake task to send the email:
 ```
 desc "Abandoned cart emails"
 task send_abandond_cart: :environment do
-  Spree::Order.self.email_eligible_abandoned_email_orders
+  Spree::Order.email_eligible_abandoned_email_orders
 end
 ```
 Create a cronjob to run every so often to send the emails:

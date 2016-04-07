@@ -15,7 +15,7 @@ class Spree::Admin::AbandonedOrdersController < Spree::Admin::BaseController
       params_clone[:created_at_lt] = Time.zone.parse(params_clone[:created_at_lt]).end_of_day rescue ''
     end
 
-    params_clone[:send_emails_count] = Integer(params_clone[:send_emails_count]) rescue ''
+    params_clone[:send_emails_count] = params_clone[:send_emails_count].to_i
 
     @search = Spree::AbandonedOrder.ransack(params_clone)
     @abandoned_carts = @search.result(distinct: true).page(params[:page]).per(Spree::Config[:admin_products_per_page])
@@ -29,6 +29,6 @@ class Spree::Admin::AbandonedOrdersController < Spree::Admin::BaseController
   private
 
   def find_abandoned_cart
-    @abandoned_cart = Spree::AbandonedOrder.find(params[:id])
+    @abandoned_cart = Spree::AbandonedOrder.find_by(id: params[:id])
   end
 end
