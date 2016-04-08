@@ -1,20 +1,39 @@
 .row
   %div.well.filter-well{'data-hook' => 'admin_orders_index_search'}
     = search_form_for [:admin, @search] do |f|
-      .field-block.alpha.four.columns
-        .date-range-filter.field
-          = label_tag :q_created_at, Spree.t('abandoned_cart.date_range_created')
-          .date-range-fields
-            = f.text_field :created_at_gt, class: 'datepicker datepicker-from', value: params[:q][:created_at_gt], placeholder: Spree.t(:start)
-            %span.range-divider{style: 'padding-top: 3px;'}
-            = f.text_field :created_at_lt, class: 'datepicker datepicker-to', value: params[:q][:created_at_lt], placeholder: Spree.t(:stop)
-      .field-block.alpha.four.columns
-        .date-range-filter.field
-          = label_tag :q_updated_at, Spree.t('abandoned_cart.date_range_sent_emails')
-          .date-range-fields
-            = f.text_field :updated_at_gt, class: 'datepicker datepicker-from', value: params[:q][:updated_at_gt], placeholder: Spree.t(:start)
-            %span.range-divider{style: 'padding-top: 3px;'}
-            = f.text_field :updated_at_lt, class: 'datepicker datepicker-to', value: params[:q][:updated_at_lt], placeholder: Spree.t(:stop)
+      .row
+        .date-range-filter.col-md-8
+          .form-group
+            = label_tag :q_created_at, Spree.t('abandoned_cart.date_range_created')
+            .row.no-padding-bottom
+              .col-md-6
+                .input-group
+                  = f.text_field :created_at_gt, class: 'datepicker datepicker-from form-control', value: params[:q][:created_at_gt], placeholder: Spree.t(:start)
+                  %span.input-group-addon
+                    %i.icon.icon-calendar
+                %span.range-divider{style: 'padding-top: 3px;'}
+              .col-md-6
+                .input-group
+                  = f.text_field :created_at_lt, class: 'datepicker datepicker-to form-control', value: params[:q][:created_at_lt], placeholder: Spree.t(:stop)
+                  %span.input-group-addon
+                    %i.icon.icon-calendar
+      .row
+        .date-range-filter.col-md-8
+          .form-group
+            = label_tag :q_updated_at, Spree.t('abandoned_cart.date_range_sent_emails')
+            .row.no-padding-bottom
+              .col-md-6
+                .input-group
+                  = f.text_field :updated_at_gt, class: 'datepicker datepicker-from form-control', value: params[:q][:updated_at_gt], placeholder: Spree.t(:start)
+                  %span.input-group-addon
+                    %i.icon.icon-calendar
+                %span.range-divider{style: 'padding-top: 3px;'}
+              .col-md-6
+                .input-group
+                  = f.text_field :updated_at_lt, class: 'datepicker datepicker-to form-control', value: params[:q][:updated_at_lt], placeholder: Spree.t(:stop)
+                  %span.input-group-addon
+                    %i.icon.icon-calendar
+
       .four.columns
         .field
           = label_tag :q_send_emails_count, Spree.t(:email)
